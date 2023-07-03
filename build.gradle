@@ -31,6 +31,9 @@ repositories {
         name 'HalfOf2'
         url 'https://storage.googleapis.com/devan-maven/'
     }
+    maven {
+        url = 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/'
+    }
 }
 
 sourceSets {
@@ -54,6 +57,14 @@ dependencies {
     implementation "org.lwjgl.lwjgl:lwjgl_util:${lwjglVersion}"
     implementation "org.lwjgl.lwjgl:lwjgl:${lwjglVersion}"
     implementation "org.lwjgl.lwjgl:lwjgl-platform:${lwjglVersion}"
+
+    implementation 'it.unimi.dsi:fastutil:8.5.12'
+    modImplementation(group: 'net.devtech', name: 'grossfabrichacks', version: '6.1') {
+        exclude group: 'net.fabricmc'
+    }
+
+    include 'it.unimi.dsi:fastutil:8.5.12'
+    include 'net.devtech:grossfabrichacks:6.1'
 
     implementation fileTree(dir: "libs", include: "**.zip")
     compileOnly fileTree(dir: "$projectDir/BTW_dev", include: "*.zip")
@@ -86,6 +97,11 @@ processResources {
     filesMatching("fabric.mod.json") {
         expand "version": project.version
     }
+}
+
+loom {
+    // Set accesswidener
+    accessWidener = file("src/main/resources/metadataextensionmod.accesswidener")
 }
 
 tasks.withType(JavaCompile).configureEach {
