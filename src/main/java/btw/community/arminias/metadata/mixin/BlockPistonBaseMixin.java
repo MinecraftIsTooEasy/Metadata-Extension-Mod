@@ -105,7 +105,7 @@ public abstract class BlockPistonBaseMixin extends Block {
                             var15.clearPistonTileEntity();
                             var11 = var15.getStoredBlockID();
                             var12 = var15.getBlockMetadata();
-                            extra = ((TileEntityPistonExtension) par1World).getBlockExtraMetadata();
+                            extra = ((TileEntityPistonExtension) var15).getBlockExtraMetadata();
                             var13 = true;
                         }
                     }

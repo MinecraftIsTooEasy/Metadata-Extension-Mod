@@ -1,17 +1,16 @@
 package btw.community.arminias.metadata;
 
-import net.devtech.grossfabrichacks.entrypoints.PrePreLaunch;
 import net.devtech.grossfabrichacks.instrumentation.InstrumentationApi;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.src.Packet52MultiBlockChange;
 import org.objectweb.asm.tree.*;
-import org.spongepowered.asm.mixin.MixinEnvironment;
 
 import static org.objectweb.asm.Opcodes.*;
 
-public class MetadataExtensionMod implements ModInitializer, PrePreLaunch {
+public class MetadataExtensionMod implements ModInitializer {
     @Override
     public void onInitialize() {
+        System.out.println("Hello Metadata world!");
         InstrumentationApi.retransform(Packet52MultiBlockChange.class, (name, node) -> {
             int count = 0;
             boolean done = false;
@@ -58,10 +57,5 @@ public class MetadataExtensionMod implements ModInitializer, PrePreLaunch {
                 System.out.println("Successfully transformed Packet52MultiBlockChange");
             }
         });
-    }
-
-    @Override
-    public void onPrePreLaunch() {
-
     }
 }

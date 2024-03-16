@@ -18,8 +18,18 @@ import java.io.IOException;
 public class NetClientHandlerMixin {
     @Shadow private WorldClient worldClient;
 
-    @Inject(method = "handleMultiBlockChange", at = @At(value = "CONSTANT", args = "intValue=255", ordinal = 0, shift = At.Shift.BY, by = 3), locals = LocalCapture.CAPTURE_FAILHARD)
+    @Inject(method = "handleMultiBlockChange", at = @At(value = "CONSTANT", args = "intValue=255", ordinal = 0, shift = At.Shift.BY, by = 3), locals = LocalCapture.CAPTURE_FAILSOFT, require = 0)
     private void handleMultiBlockChangeInject(Packet52MultiBlockChange par1Packet52MultiBlockChange, CallbackInfo ci, int var2, int var3, DataInputStream var4, int var5, short var6, short var7, int var8, int var9, int var10, int var11, int var12) {
+        try {
+            int extraMeta = var4.readInt();
+            ((WorldClientExtension) this.worldClient).setBlockAndMetadataAndExtraMetadataAndInvalidate(var10 + var2, var12, var11 + var3, var8, var9, extraMeta);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Inject(method = "handleMultiBlockChange", at = @At(value = "CONSTANT", args = "intValue=255", ordinal = 0, shift = At.Shift.BY, by = 3), locals = LocalCapture.CAPTURE_FAILSOFT, require = 0)
+    private void handleMultiBlockChangeInject2(Packet52MultiBlockChange par1Packet52MultiBlockChange, CallbackInfo ci, int var2, int var3, DataInputStream var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12) {
         try {
             int extraMeta = var4.readInt();
             ((WorldClientExtension) this.worldClient).setBlockAndMetadataAndExtraMetadataAndInvalidate(var10 + var2, var12, var11 + var3, var8, var9, extraMeta);
