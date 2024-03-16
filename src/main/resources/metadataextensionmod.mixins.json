@@ -32,5 +32,6 @@
   "injectors": {
     "defaultRequire": 1,
     "maxShiftBy": 5
-  }
+  },
+  "plugin": "net.devtech.grossfabrichacks.GrossFabricHacks"
 }

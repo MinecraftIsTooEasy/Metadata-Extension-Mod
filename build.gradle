@@ -1,5 +1,7 @@
 import net.fabricmc.loom.task.RunClientTask
 import net.fabricmc.loom.task.RunServerTask
+import org.gradle.plugins.ide.idea.model.FilePath
+import org.gradle.plugins.ide.idea.model.Module
 
 buildscript {
     dependencies {
@@ -10,6 +12,7 @@ buildscript {
 plugins {
     id 'maven-publish'
     id 'fabric-loom' version "0.7-SNAPSHOT"
+    id 'idea'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -30,6 +33,9 @@ repositories {
     maven {
         name 'HalfOf2'
         url 'https://storage.googleapis.com/devan-maven/'
+    }
+    maven {
+        url file('mavenRepo')
     }
     maven {
         url = 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/'
@@ -59,24 +65,28 @@ dependencies {
     implementation "org.lwjgl.lwjgl:lwjgl-platform:${lwjglVersion}"
 
     implementation 'it.unimi.dsi:fastutil:8.5.12'
-    modImplementation(group: 'net.devtech', name: 'grossfabrichacks', version: '6.1') {
+    modImplementation(group: 'net.devtech', name: 'grossfabrichacks', version: '4.5') {
         exclude group: 'net.fabricmc'
     }
 
-    include 'it.unimi.dsi:fastutil:8.5.12'
-    include 'net.devtech:grossfabrichacks:6.1'
+    //include 'it.unimi.dsi:fastutil:8.5.12'
+    //include 'net.devtech:grossfabrichacks:6.1'
 
     implementation fileTree(dir: "libs", include: "**.zip")
     compileOnly fileTree(dir: "$projectDir/BTW_dev", include: "*.zip")
-    compileOnly fileTree(dir: "$buildDir/BTW_dev", include: "**.jar")
+    compileOnly fileTree(dir: "$buildDir/BTW_dev", include: "BTW_dev.jar")
+    //implementation fileTree(dir: "$buildDir/BTW_dev", include: "BTW_dev.jar")
+    runtimeClasspath fileTree(dir: "$buildDir/BTW_dev", include: "BTW_dev.jar")
 
-    runtimeClasspath fileTree(dir: "$buildDir/dev_run", include: "dev.jar")
+    implementation fileTree(dir: "mavenRepo/group/dev/1.0", include: "dev-1.0.jar")
 
     mappings fileTree(dir: "custom_mappings", include: "**.zip")
     modImplementation("io.github.minecraft-cursed-legacy:cursed-fabric-loader:${loader_version}") {
         transitive false
     }
+
 }
+
 
 configurations {
     btwCompileClasspath.extendsFrom implementation, modImplementation
@@ -91,6 +101,10 @@ configurations.all {
         force "org.lwjgl.lwjgl:lwjgl-platform:${lwjglVersion}"
     }
 }
+loom {
+    // Set accesswidener
+    accessWidener = file("src/main/resources/metadataextensionmod.accesswidener")
+}
 
 processResources {
     inputs.property "version", project.version
@@ -99,9 +113,24 @@ processResources {
     }
 }
 
-loom {
-    // Set accesswidener
-    accessWidener = file("src/main/resources/metadataextensionmod.accesswidener")
+idea {
+    module {
+        iml {
+            whenMerged { Module cp ->
+                def entry = cp.dependencies.find { entry -> entry.classes.any {
+                    it.file.path.endsWith('dev.jar')
+                }}
+                // add javadoc jar
+                entry.javadoc.add getPathFactory().path("$buildDir/dev_run/dev-javadoc.jar")
+            }
+
+            generateTo = file(".idea/modules")
+        }
+    }
+}
+
+openIdea {
+
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -133,8 +162,8 @@ task devPackRun(type:Jar) {
     from fileTree("$buildDir/classes/java/btw")
     from fileTree("$projectDir/BTW_dev/")
     from sourceSets.btw.output.resourcesDir
-    destinationDirectory = file("$buildDir/dev_run")
-    archiveFileName = "dev.jar"
+    destinationDirectory = file("mavenRepo/group/dev/1.0/")
+    archiveFileName = "dev-1.0.jar"
 }
 
 jar {
@@ -189,3 +218,5 @@ clean.doFirst {
     delete "$buildDir/dev_run"
     delete "$buildDir/BTW_dev"
 }
+
+downloadAssets.enabled = false

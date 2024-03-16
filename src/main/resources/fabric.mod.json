@@ -14,14 +14,11 @@
   },
 
   "license": "CC-BY-4.0",
-  "icon": "assets/metadataextensionmod/icon.png",
+  "icon": "metadataextensionmod/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "init": [
-      "btw.community.arminias.metadata.MetadataExtensionMod"
-    ],
-    "gfh:prePreLaunch": [
       "btw.community.arminias.metadata.MetadataExtensionMod"
     ]
   },
