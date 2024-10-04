@@ -13,5 +13,4 @@ Ducktyping as in `((WorldExtension) world).getBlockExtraMetadata(...)` is also p
 
 ## License
 This project incorporates:
-* A modified version of [Fabric Loom](https://github.com/FabricMC/fabric-loom) (MIT)
 * A precompiled version of [Tiny Remapper](https://github.com/FabricMC/tiny-remapper) (LGPL-3.0)

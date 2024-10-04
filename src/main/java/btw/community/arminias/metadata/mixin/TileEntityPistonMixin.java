@@ -35,10 +35,10 @@ public class TileEntityPistonMixin extends TileEntity implements TileEntityPisto
         ((TileEntityExtension) cachedTileEntity).setBlockExtraMetadata(this.storedExtraMetadata);
     }
 
-    @Redirect(method = "clearPistonTileEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/src/World;setBlock(IIIIII)Z"))
+    /*@Redirect(method = "clearPistonTileEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/src/World;setBlock(IIIIII)Z"))
     private boolean clearPistonTileEntity(World world, int i, int j, int k, int i1, int i2, int i3) {
         return ((WorldExtension) world).setBlockWithExtra(i, j, k, i1, i2, i3, this.storedExtraMetadata);
-    }
+    }*/
 
     @Redirect(method = "restoreStoredBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/src/World;setBlock(IIIIII)Z"))
     private boolean restoreStoredBlock(World world, int i, int j, int k, int i1, int i2, int i3) {

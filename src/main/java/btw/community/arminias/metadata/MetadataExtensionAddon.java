@@ -7,7 +7,8 @@ import net.minecraft.src.Block;
 
 public class MetadataExtensionAddon extends BTWAddon {
     public MetadataExtensionAddon() {
-        super("Metadata Extension Addon", "1.0.1", "MetadataExtension");
+        //super("Metadata Extension Addon", "1.0", "MetadataExtension");
+        super();
     }
 
     @Override

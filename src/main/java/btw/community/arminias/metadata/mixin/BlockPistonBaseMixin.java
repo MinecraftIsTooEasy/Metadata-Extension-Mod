@@ -40,41 +40,35 @@ public abstract class BlockPistonBaseMixin extends Block {
      * entity at this location. Args: world, x, y, z, blockID, EventID, event parameter
      */
     @Overwrite
-    public boolean onBlockEventReceived(World par1World, int par2, int par3, int par4, int par5, int par6)
-    {
-        if (!par1World.isRemote)
-        {
+    public boolean onBlockEventReceived(World par1World, int par2, int par3, int par4, int par5, int par6) {
+        if (!par1World.isRemote) {
             boolean var7 = this.isIndirectlyPowered(par1World, par2, par3, par4, par6);
 
-            if (var7 && par5 == 1)
-            {
+            if (var7 && par5 == 1) {
                 par1World.setBlockMetadataWithNotify(par2, par3, par4, par6 | 8, 2);
                 return false;
             }
 
-            if (!var7 && par5 == 0)
-            {
+            if (!var7 && par5 == 0) {
                 return false;
             }
         }
 
-        if (par5 == 0)
-        {
-            if (!this.tryExtend(par1World, par2, par3, par4, par6))
-            {
+        if (par5 == 0) {
+            if (!this.tryExtend(par1World, par2, par3, par4, par6)) {
                 return false;
             }
 
             par1World.setBlockMetadataWithNotify(par2, par3, par4, par6 | 8, 2);
-            par1World.playSoundEffect((double)par2 + 0.5D, (double)par3 + 0.5D, (double)par4 + 0.5D, "tile.piston.out", 0.5F, par1World.rand.nextFloat() * 0.25F + 0.6F);
+            par1World.playSoundEffect((double) par2 + 0.5D, (double) par3 + 0.5D, (double) par4 + 0.5D, "tile.piston.out", 0.5F,
+                    par1World.rand.nextFloat() * 0.25F + 0.6F);
         }
-        else if (par5 == 1)
-        {
+        else if (par5 == 1) {
             TileEntity var16 = par1World.getBlockTileEntity(par2 + Facing.offsetsXForSide[par6], par3 + Facing.offsetsYForSide[par6], par4 + Facing.offsetsZForSide[par6]);
 
             if (var16 instanceof TileEntityPiston)
             {
-                ((TileEntityPiston)var16).clearPistonTileEntity();
+                ((TileEntityPiston) var16).clearPistonTileEntity();
             }
             //EDITMICRO
             int extra = ((WorldExtension) par1World).getBlockExtraMetadata(par2, par3, par4);
@@ -98,7 +92,7 @@ public abstract class BlockPistonBaseMixin extends Block {
 
                     if (var14 instanceof TileEntityPiston)
                     {
-                        TileEntityPiston var15 = (TileEntityPiston)var14;
+                        TileEntityPiston var15 = (TileEntityPiston) var14;
 
                         if (var15.getPistonOrientation() == par6 && var15.isExtending())
                         {
@@ -113,11 +107,11 @@ public abstract class BlockPistonBaseMixin extends Block {
 
                 Block targetBlock = Block.blocksList[var11];
 
-                if ( !var13 && targetBlock != null &&
-                        targetBlock.canBlockBePulledByPiston(par1World, var8, var9, var10, Block.getOppositeFacing(par6)) )
+                if (!var13 && targetBlock != null &&
+                        targetBlock.canBlockBePulledByPiston(par1World, var8, var9, var10, Block.getOppositeFacing(par6)))
                 {
                     // FCMOD: Added
-                    var12 =  targetBlock.adjustMetadataForPistonMove(var12);
+                    var12 = targetBlock.adjustMetadataForPistonMove(var12);
                     // END FCMOD
 
                     par2 += Facing.offsetsXForSide[par6];
@@ -127,22 +121,22 @@ public abstract class BlockPistonBaseMixin extends Block {
                     NBTTagCompound tileEntityData = getBlockTileEntityData(par1World, var8, var9, var10);
                     par1World.removeBlockTileEntity(var8, var9, var10);
 
+                    // ---END EDIT---
                     ((WorldExtension) par1World).setBlockWithExtra(par2, par3, par4, Block.pistonMoving.blockID, var12, 3, extra);
-                    par1World.setBlockTileEntity(par2, par3, par4, PistonHelper.getTileEntity(var11, var12, par6, false, false, extra));
+                    par1World.setBlockTileEntity(par2, par3, par4, PistonHelper.getTileEntity(var11, var12, Block.getOppositeFacing(par6), true, false, extra));
                     ((TileEntityPiston) par1World.getBlockTileEntity(par2, par3, par4)).storeTileEntity(tileEntityData);
                     par1World.setBlockToAir(var8, var9, var10);
                 }
-                else if (!var13)
-                {
+                else if (!var13) {
                     par1World.setBlockToAir(par2 + Facing.offsetsXForSide[par6], par3 + Facing.offsetsYForSide[par6], par4 + Facing.offsetsZForSide[par6]);
                 }
             }
-            else
-            {
+            else {
                 par1World.setBlockToAir(par2 + Facing.offsetsXForSide[par6], par3 + Facing.offsetsYForSide[par6], par4 + Facing.offsetsZForSide[par6]);
             }
 
-            par1World.playSoundEffect((double)par2 + 0.5D, (double)par3 + 0.5D, (double)par4 + 0.5D, "tile.piston.in", 0.5F, par1World.rand.nextFloat() * 0.15F + 0.6F);
+            par1World.playSoundEffect((double) par2 + 0.5D, (double) par3 + 0.5D, (double) par4 + 0.5D, "tile.piston.in", 0.5F,
+                    par1World.rand.nextFloat() * 0.15F + 0.6F);
         }
 
         return true;

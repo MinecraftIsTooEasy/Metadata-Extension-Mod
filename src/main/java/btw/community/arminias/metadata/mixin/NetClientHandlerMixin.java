@@ -6,6 +6,7 @@ import net.minecraft.src.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Group;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -18,6 +19,7 @@ import java.io.IOException;
 public class NetClientHandlerMixin {
     @Shadow private WorldClient worldClient;
 
+    @Group(name = "handleBlockChange", min = 1, max = 1)
     @Inject(method = "handleMultiBlockChange", at = @At(value = "CONSTANT", args = "intValue=255", ordinal = 0, shift = At.Shift.BY, by = 3), locals = LocalCapture.CAPTURE_FAILSOFT, require = 0)
     private void handleMultiBlockChangeInject(Packet52MultiBlockChange par1Packet52MultiBlockChange, CallbackInfo ci, int var2, int var3, DataInputStream var4, int var5, short var6, short var7, int var8, int var9, int var10, int var11, int var12) {
         try {
@@ -28,6 +30,7 @@ public class NetClientHandlerMixin {
         }
     }
 
+    @Group(name = "handleBlockChange", min = 1, max = 1)
     @Inject(method = "handleMultiBlockChange", at = @At(value = "CONSTANT", args = "intValue=255", ordinal = 0, shift = At.Shift.BY, by = 3), locals = LocalCapture.CAPTURE_FAILSOFT, require = 0)
     private void handleMultiBlockChangeInject2(Packet52MultiBlockChange par1Packet52MultiBlockChange, CallbackInfo ci, int var2, int var3, DataInputStream var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12) {
         try {

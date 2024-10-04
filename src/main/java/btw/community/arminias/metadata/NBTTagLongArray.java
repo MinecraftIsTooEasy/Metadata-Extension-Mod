@@ -26,27 +26,34 @@ public class NBTTagLongArray extends NBTBase
     /**
      * Write the actual data contents of the tag, implemented in NBT extension classes
      */
-    protected void write(DataOutput par1DataOutput) throws IOException
+    public void write(DataOutput par1DataOutput)
     {
-        par1DataOutput.writeInt(this.longArray.length);
+        try {
+            par1DataOutput.writeInt(this.longArray.length);
 
-        for (int var2 = 0; var2 < this.longArray.length; ++var2)
-        {
-            par1DataOutput.writeLong(this.longArray[var2]);
+            for (int var2 = 0; var2 < this.longArray.length; ++var2) {
+                par1DataOutput.writeLong(this.longArray[var2]);
+            }
+        }
+        catch (IOException var3) {
+            throw new RuntimeException(var3);
         }
     }
 
     /**
      * Read the actual data contents of the tag, implemented in NBT extension classes
      */
-    protected void load(DataInput par1DataInput) throws IOException
-    {
-        int var2 = par1DataInput.readInt();
-        this.longArray = new long[var2];
+    public void load(DataInput par1DataInput, int i) {
+        try {
+            int var2 = par1DataInput.readInt();
+            this.longArray = new long[var2];
 
-        for (int var3 = 0; var3 < var2; ++var3)
-        {
-            this.longArray[var3] = par1DataInput.readLong();
+            for (int var3 = 0; var3 < var2; ++var3) {
+                this.longArray[var3] = par1DataInput.readLong();
+            }
+        }
+        catch (IOException var4) {
+            throw new RuntimeException(var4);
         }
     }
 

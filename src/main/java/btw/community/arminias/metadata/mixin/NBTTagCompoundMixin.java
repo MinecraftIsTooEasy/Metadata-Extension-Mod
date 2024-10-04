@@ -4,6 +4,7 @@ import btw.community.arminias.metadata.NBTTagLongArray;
 import btw.community.arminias.metadata.extension.NBTTagCompoundExtension;
 import net.minecraft.src.CrashReport;
 import net.minecraft.src.NBTTagCompound;
+import net.minecraft.src.NBTTagIntArray;
 import net.minecraft.src.ReportedException;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

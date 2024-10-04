@@ -50,15 +50,14 @@ public class HunkArray {
         int var5 = par2 << this.depthBitsPlusFour | par3 << this.depthBits | par1;
         int var6 = var5 >> 1;
         int var7 = var5 & 1;
-        long par4_l = par4;
-        
+
         if (var7 == 0)
         {
-            this.data[var6] = (this.data[var6] & 0xffffffff00000000L | par4_l & 0x00000000ffffffffL);
+            this.data[var6] = (this.data[var6] & 0xffffffff00000000L | (long) par4 & 0x00000000ffffffffL);
         }
         else
         {
-            this.data[var6] = (this.data[var6] & 0x00000000ffffffffL | (par4_l & 0x00000000ffffffffL) << 32);
+            this.data[var6] = (this.data[var6] & 0x00000000ffffffffL | ((long) par4 & 0x00000000ffffffffL) << 32);
         }
     }
 }

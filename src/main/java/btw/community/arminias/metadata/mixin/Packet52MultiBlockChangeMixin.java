@@ -32,7 +32,7 @@ public abstract class Packet52MultiBlockChangeMixin extends Packet {
 
     @Shadow public byte[] metadataArray;
 
-    /*@Overwrite(aliases = {"<init>"}, remap = false)
+    /*@Overwrite(aliases = {"Lnet/minecraft/src/Packet52MultiBlockChange;<init>(II[SILnet/minecraft/src/World;)V"}, remap = false)
     private void initInject(int par1, int par2, short[] par3ArrayOfShort, int par4, World par5World, CallbackInfo ci) {
         this.isChunkDataPacket = true;
         this.xPosition = par1;
@@ -83,8 +83,8 @@ public abstract class Packet52MultiBlockChangeMixin extends Packet {
         ci.cancel();
     }*/
 
-    /*@ModifyConstant(method = "<init>(II[SILnet/minecraft/src/World;)V", constant = @Constant(intValue = 4, ordinal = 0))
-    private static int initInject(int par1) {
+    @ModifyConstant(method = "<init>(II[SILnet/minecraft/src/World;)V", constant = @Constant(intValue = 4, ordinal = 0))
+    private int initInject(int par1) {
         return 8;
     }
 
@@ -95,7 +95,7 @@ public abstract class Packet52MultiBlockChangeMixin extends Packet {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }*/
+    }
 
     @Inject(method = "getPacketSize", at = @At("RETURN"), cancellable = true)
     private void getPacketSizeInject(CallbackInfoReturnable<Integer> cir) {

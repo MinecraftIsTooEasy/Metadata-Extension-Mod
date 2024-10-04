@@ -18,7 +18,7 @@ public class TileEntityMixin implements TileEntityExtension {
     @Shadow public int zCoord;
     public int blockExtraMetadata = -1;
 
-    @Inject(method = "onInventoryChanged", at = @At(value = "INVOKE", target = "Lnet/minecraft/src/World;updateTileEntityChunkAndDoNothing(IIILnet/minecraft/src/TileEntity;)V"))
+    @Inject(method = "onInventoryChanged", at = @At(value = "INVOKE", target = "Lnet/minecraft/src/World;getBlockMetadata(III)I"))
     private void onInventoryChanged(CallbackInfo ci) {
         this.blockExtraMetadata = ((WorldExtension) worldObj).getBlockExtraMetadata(this.xCoord, this.yCoord, this.zCoord);
     }

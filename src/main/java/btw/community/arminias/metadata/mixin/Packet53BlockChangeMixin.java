@@ -11,9 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 @Mixin(Packet53BlockChange.class)
 public class Packet53BlockChangeMixin implements Packet53BlockChangeExtension {
@@ -31,18 +29,18 @@ public class Packet53BlockChangeMixin implements Packet53BlockChangeExtension {
     }
 
     @Inject(method = "readPacketData", at = @At("RETURN"))
-    private void readPacketDataInject(DataInputStream par1DataInputStream, CallbackInfo ci) {
+    private void readPacketDataInject(DataInput par1, CallbackInfo ci) {
         try {
-            this.extraMetadata = par1DataInputStream.readInt();
+            this.extraMetadata = par1.readInt();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Inject(method = "writePacketData", at = @At("RETURN"))
-    private void writePacketDataInject(DataOutputStream par1DataOutputStream, CallbackInfo ci) {
+    private void writePacketDataInject(DataOutput par1, CallbackInfo ci) {
         try {
-            par1DataOutputStream.writeInt(this.extraMetadata);
+            par1.writeInt(this.extraMetadata);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

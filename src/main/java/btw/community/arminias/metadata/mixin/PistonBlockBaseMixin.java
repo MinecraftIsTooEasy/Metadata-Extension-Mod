@@ -1,26 +1,31 @@
 package btw.community.arminias.metadata.mixin;
 
-import btw.block.blocks.PistonBlockBase;
-import btw.block.blocks.PistonBlockMoving;
 import btw.community.arminias.metadata.PistonHelper;
 import btw.community.arminias.metadata.extension.WorldExtension;
 import net.minecraft.src.*;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(PistonBlockBase.class)
-public abstract class PistonBlockBaseMixin extends BlockPistonBase {
+@Mixin(BlockPistonBase.class)
+public abstract class PistonBlockBaseMixin extends Block {
+    protected PistonBlockBaseMixin(int par1, Material par2Material) {
+        super(par1, par2Material);
+    }
+
     @Shadow protected abstract int getPistonShovelEjectionDirection(World world, int i, int j, int k, int iToFacing);
 
     @Shadow protected abstract void onShovelEjectIntoBlock(World world, int i, int j, int k);
 
-    public PistonBlockBaseMixin(int par1, boolean par2) {
-        super(par1, par2);
+    @Shadow
+    public static NBTTagCompound getBlockTileEntityData(World worldObj, int x, int y, int z) {
+        return null;
     }
+
+    @Shadow @Final protected boolean isSticky;
 
     @Redirect(method = "validatePistonState", at = @At(value = "INVOKE", target = "Lnet/minecraft/src/World;SetBlockMetadataWithNotify(IIIII)Z"))
     private boolean validatePistonStateRedirect(World world, int x, int y, int z, int metadata, int notify) {
@@ -30,7 +35,6 @@ public abstract class PistonBlockBaseMixin extends BlockPistonBase {
     /**
      * @author Arminias
      */
-    @Override
     @Overwrite
     public boolean tryExtend(World world, int x, int y, int z, int facingTo) {
         int offsetX = x + Facing.offsetsXForSide[facingTo];
@@ -102,8 +106,8 @@ public abstract class PistonBlockBaseMixin extends BlockPistonBase {
 
             int blockCounter = 0;
             int[] blockIDList;
-            int movingX = 0;
-            int movingY = 0;
+            int movingX;
+            int movingY;
             int movingZ = 0;
 
             for (blockIDList = new int[13]; offsetX != x || offsetY != y || offsetZ != z; offsetZ = movingZ) {
