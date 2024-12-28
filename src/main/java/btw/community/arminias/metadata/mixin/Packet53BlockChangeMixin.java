@@ -2,8 +2,8 @@ package btw.community.arminias.metadata.mixin;
 
 import btw.community.arminias.metadata.extension.Packet53BlockChangeExtension;
 import btw.community.arminias.metadata.extension.WorldExtension;
-import net.minecraft.src.Packet53BlockChange;
-import net.minecraft.src.World;
+import net.minecraft.Packet53BlockChange;
+import net.minecraft.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -23,7 +23,7 @@ public class Packet53BlockChangeMixin implements Packet53BlockChangeExtension {
         return this.extraMetadata;
     }
 
-    @Inject(method = "<init>(IIILnet/minecraft/src/World;)V", at = @At("RETURN"))
+    @Inject(method = "<init>(IIILnet/minecraft/World;)V", at = @At("RETURN"))
     private void initInject(int par1, int par2, int par3, World par4World, CallbackInfo ci) {
         this.extraMetadata = ((WorldExtension) par4World).getBlockExtraMetadata(par1, par2, par3);;
     }

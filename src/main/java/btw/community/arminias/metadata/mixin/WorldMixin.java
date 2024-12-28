@@ -2,10 +2,10 @@ package btw.community.arminias.metadata.mixin;
 
 import btw.community.arminias.metadata.extension.ChunkExtension;
 import btw.community.arminias.metadata.extension.WorldExtension;
-import net.minecraft.src.Block;
-import net.minecraft.src.Chunk;
-import net.minecraft.src.Profiler;
-import net.minecraft.src.World;
+import net.minecraft.Block;
+import net.minecraft.Chunk;
+import net.minecraft.Profiler;
+import net.minecraft.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

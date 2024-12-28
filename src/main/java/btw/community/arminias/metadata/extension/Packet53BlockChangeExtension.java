@@ -1,6 +1,6 @@
 package btw.community.arminias.metadata.extension;
 
-import net.minecraft.src.Packet53BlockChange;
+import net.minecraft.Packet53BlockChange;
 
 public interface Packet53BlockChangeExtension {
     int getExtraMetadata();

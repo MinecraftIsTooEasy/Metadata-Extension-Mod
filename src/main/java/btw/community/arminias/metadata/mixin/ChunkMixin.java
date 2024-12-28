@@ -6,7 +6,7 @@ import btw.community.arminias.metadata.extension.ExtendedBlockStorageExtension;
 import btw.community.arminias.metadata.extension.TileEntityExtension;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.src.*;
+import net.minecraft.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -58,7 +58,7 @@ public abstract class ChunkMixin implements ChunkExtension {
         return dataPos + length * 8;
     }
 
-    @Inject(method = "setBlockIDWithMetadata", at = @At(value = "INVOKE", target = "Lnet/minecraft/src/ExtendedBlockStorage;setExtBlockMetadata(IIII)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
+    @Inject(method = "setBlockIDWithMetadata", at = @At(value = "INVOKE", target = "Lnet/minecraft/ExtendedBlockStorage;setExtBlockMetadata(IIII)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
     private void setBlockExtraMetadata(int par1, int par2, int par3, int par4, int par5, CallbackInfoReturnable<Boolean> cir, int var6, int var7, int var8, int var9, ExtendedBlockStorage var10) {
         ((ExtendedBlockStorageExtension) var10).setExtBlockExtraMetadata(par1, par2 & 15, par3, 0);
     }

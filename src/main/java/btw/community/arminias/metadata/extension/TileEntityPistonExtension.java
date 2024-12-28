@@ -1,7 +1,7 @@
 package btw.community.arminias.metadata.extension;
 
-import net.minecraft.src.TileEntity;
-import net.minecraft.src.TileEntityPiston;
+import net.minecraft.TileEntity;
+import net.minecraft.TileEntityPiston;
 
 public interface TileEntityPistonExtension {
     int getBlockExtraMetadata();

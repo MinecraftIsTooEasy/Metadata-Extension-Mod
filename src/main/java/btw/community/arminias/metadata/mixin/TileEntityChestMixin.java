@@ -1,8 +1,8 @@
 package btw.community.arminias.metadata.mixin;
 
 import btw.community.arminias.metadata.extension.WorldExtension;
-import net.minecraft.src.TileEntity;
-import net.minecraft.src.TileEntityChest;
+import net.minecraft.TileEntity;
+import net.minecraft.TileEntityChest;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

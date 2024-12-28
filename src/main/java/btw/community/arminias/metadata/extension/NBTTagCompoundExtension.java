@@ -1,6 +1,6 @@
 package btw.community.arminias.metadata.extension;
 
-import net.minecraft.src.NBTTagCompound;
+import net.minecraft.NBTTagCompound;
 
 public interface NBTTagCompoundExtension {
     /**

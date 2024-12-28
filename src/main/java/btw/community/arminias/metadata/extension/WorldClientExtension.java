@@ -1,6 +1,6 @@
 package btw.community.arminias.metadata.extension;
 
-import net.minecraft.src.World;
+import net.minecraft.World;
 
 public interface WorldClientExtension {
     boolean setBlockAndMetadataAndExtraMetadataAndInvalidate(int x, int y, int z, int type, int meta, int extraMeta);

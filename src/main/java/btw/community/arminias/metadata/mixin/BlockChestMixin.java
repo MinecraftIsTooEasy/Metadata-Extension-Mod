@@ -1,8 +1,8 @@
 package btw.community.arminias.metadata.mixin;
 
 import btw.community.arminias.metadata.extension.WorldExtension;
-import net.minecraft.src.BlockChest;
-import net.minecraft.src.World;
+import net.minecraft.BlockChest;
+import net.minecraft.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;

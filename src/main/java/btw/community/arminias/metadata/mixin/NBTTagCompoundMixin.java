@@ -2,10 +2,10 @@ package btw.community.arminias.metadata.mixin;
 
 import btw.community.arminias.metadata.NBTTagLongArray;
 import btw.community.arminias.metadata.extension.NBTTagCompoundExtension;
-import net.minecraft.src.CrashReport;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.NBTTagIntArray;
-import net.minecraft.src.ReportedException;
+import net.minecraft.CrashReport;
+import net.minecraft.NBTTagCompound;
+import net.minecraft.NBTTagIntArray;
+import net.minecraft.ReportedException;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 

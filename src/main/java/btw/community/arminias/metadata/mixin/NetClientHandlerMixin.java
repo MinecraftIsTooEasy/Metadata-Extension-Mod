@@ -2,7 +2,7 @@ package btw.community.arminias.metadata.mixin;
 
 import btw.community.arminias.metadata.extension.Packet53BlockChangeExtension;
 import btw.community.arminias.metadata.extension.WorldClientExtension;
-import net.minecraft.src.*;
+import net.minecraft.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;

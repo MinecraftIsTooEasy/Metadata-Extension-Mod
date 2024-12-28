@@ -1,7 +1,7 @@
 package btw.community.arminias.metadata;
 
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.src.Packet52MultiBlockChange;
+import net.minecraft.Packet52MultiBlockChange;
 import org.objectweb.asm.tree.*;
 
 import static org.objectweb.asm.Opcodes.*;

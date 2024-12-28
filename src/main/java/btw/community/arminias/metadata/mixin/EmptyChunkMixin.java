@@ -1,7 +1,7 @@
 package btw.community.arminias.metadata.mixin;
 
 import btw.community.arminias.metadata.extension.EmptyChunkExtension;
-import net.minecraft.src.EmptyChunk;
+import net.minecraft.EmptyChunk;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(EmptyChunk.class)

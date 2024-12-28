@@ -1,7 +1,7 @@
 package btw.community.arminias.metadata.mixin;
 
 import btw.community.arminias.metadata.NBTTagLongArray;
-import net.minecraft.src.NBTBase;
+import net.minecraft.NBTBase;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;

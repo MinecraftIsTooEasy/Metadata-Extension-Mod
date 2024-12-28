@@ -1,10 +1,10 @@
 package btw.community.arminias.metadata.mixin;
 
 import btw.community.arminias.metadata.extension.ChunkExtension;
-import net.minecraft.src.Chunk;
-import net.minecraft.src.Packet;
-import net.minecraft.src.Packet52MultiBlockChange;
-import net.minecraft.src.World;
+import net.minecraft.Chunk;
+import net.minecraft.Packet;
+import net.minecraft.Packet52MultiBlockChange;
+import net.minecraft.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -83,12 +83,12 @@ public abstract class Packet52MultiBlockChangeMixin extends Packet {
         ci.cancel();
     }*/
 
-    @ModifyConstant(method = "<init>(II[SILnet/minecraft/src/World;)V", constant = @Constant(intValue = 4, ordinal = 0))
+    @ModifyConstant(method = "<init>(II[SILnet/minecraft/World;)V", constant = @Constant(intValue = 4, ordinal = 0))
     private int initInject(int par1) {
         return 8;
     }
 
-    @Inject(method = "<init>(II[SILnet/minecraft/src/World;)V", at = @At(value = "INVOKE", target = "Ljava/io/DataOutputStream;writeShort(I)V", ordinal = 1, shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
+    @Inject(method = "<init>(II[SILnet/minecraft/World;)V", at = @At(value = "INVOKE", target = "Ljava/io/DataOutputStream;writeShort(I)V", ordinal = 1, shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
     private void initInject(int par1, int par2, short[] par3ArrayOfShort, int par4, World par5World, CallbackInfo ci, int var6, Chunk var7, ByteArrayOutputStream var8, DataOutputStream var9, int var10, int var11, int var12, int var13) {
         try {
             var9.writeInt(((ChunkExtension) var7).getBlockExtraMetadata(var11, var13, var12));

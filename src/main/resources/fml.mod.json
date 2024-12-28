@@ -18,9 +18,6 @@
   "entrypoints": {
     "init": [
       "btw.community.arminias.metadata.MetadataExtensionMod"
-    ],
-    "btw:addon": [
-      "btw.community.arminias.metadata.MetadataExtensionAddon"
     ]
   },
   "mixins": [
@@ -30,7 +27,6 @@
   "accessWidener": "metadataextensionmod.accesswidener",
 
   "depends": {
-    "fabricloader": ">=0.7.4"
   },
   "suggests": {
     "flamingo": "*"

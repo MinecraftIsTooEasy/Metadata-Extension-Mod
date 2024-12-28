@@ -1,8 +1,8 @@
 package btw.community.arminias.metadata;
 
 import btw.community.arminias.metadata.extension.TileEntityPistonExtension;
-import net.minecraft.src.TileEntity;
-import net.minecraft.src.TileEntityPiston;
+import net.minecraft.TileEntity;
+import net.minecraft.TileEntityPiston;
 
 public class PistonHelper {
     /**

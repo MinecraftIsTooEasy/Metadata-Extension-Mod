@@ -2,8 +2,8 @@ package btw.community.arminias.metadata.mixin;
 
 import btw.community.arminias.metadata.extension.ChunkCacheExtension;
 import btw.community.arminias.metadata.extension.ChunkExtension;
-import net.minecraft.src.Chunk;
-import net.minecraft.src.ChunkCache;
+import net.minecraft.Chunk;
+import net.minecraft.ChunkCache;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 

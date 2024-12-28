@@ -1,6 +1,6 @@
 package btw.community.arminias.metadata.mixin;
 
-import net.minecraft.src.Packet56MapChunks;
+import net.minecraft.Packet56MapChunks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;

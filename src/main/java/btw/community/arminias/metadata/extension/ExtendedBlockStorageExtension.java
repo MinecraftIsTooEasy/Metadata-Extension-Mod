@@ -1,7 +1,7 @@
 package btw.community.arminias.metadata.extension;
 
 import btw.community.arminias.metadata.HunkArray;
-import net.minecraft.src.ExtendedBlockStorage;
+import net.minecraft.ExtendedBlockStorage;
 
 public interface ExtendedBlockStorageExtension {
     int getExtBlockExtraMetadata(int par1, int par2, int par3);

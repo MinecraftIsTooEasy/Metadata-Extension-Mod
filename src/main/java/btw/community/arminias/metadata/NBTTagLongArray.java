@@ -1,6 +1,6 @@
 package btw.community.arminias.metadata;
 
-import net.minecraft.src.NBTBase;
+import net.minecraft.NBTBase;
 
 import java.io.DataInput;
 import java.io.DataOutput;

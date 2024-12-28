@@ -1,6 +1,6 @@
 package btw.community.arminias.metadata.extension;
 
-import net.minecraft.src.World;
+import net.minecraft.World;
 
 public interface WorldExtension {
     boolean setBlockWithExtra(int par1, int par2, int par3, int par4, int par5, int par6, int extraMeta);

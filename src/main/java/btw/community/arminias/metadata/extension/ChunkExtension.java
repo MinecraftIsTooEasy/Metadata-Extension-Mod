@@ -1,6 +1,6 @@
 package btw.community.arminias.metadata.extension;
 
-import net.minecraft.src.Chunk;
+import net.minecraft.Chunk;
 
 public interface ChunkExtension {
     int getBlockExtraMetadata(int par1, int par2, int par3);

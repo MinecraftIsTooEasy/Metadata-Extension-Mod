@@ -1,6 +1,6 @@
 package btw.community.arminias.metadata.extension;
 
-import net.minecraft.src.TileEntity;
+import net.minecraft.TileEntity;
 
 public interface TileEntityExtension {
     void setBlockExtraMetadata(int par1);

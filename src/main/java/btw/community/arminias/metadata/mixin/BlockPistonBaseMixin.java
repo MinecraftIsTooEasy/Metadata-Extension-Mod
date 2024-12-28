@@ -3,7 +3,7 @@ package btw.community.arminias.metadata.mixin;
 import btw.community.arminias.metadata.PistonHelper;
 import btw.community.arminias.metadata.extension.TileEntityPistonExtension;
 import btw.community.arminias.metadata.extension.WorldExtension;
-import net.minecraft.src.*;
+import net.minecraft.*;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(BlockPistonBase.class)
 public abstract class BlockPistonBaseMixin extends Block {
     protected BlockPistonBaseMixin(int par1, Material par2Material) {
-        super(par1, par2Material);
+        super(par1, par2Material, new BlockConstants());
     }
 
     @Shadow protected abstract boolean isIndirectlyPowered(World par1World, int par2, int par3, int par4, int par5);
@@ -28,7 +28,7 @@ public abstract class BlockPistonBaseMixin extends Block {
         return null;
     }
 
-    @Redirect(method = "updatePistonState", at = @At(value = "INVOKE", target = "Lnet/minecraft/src/World;setBlockMetadataWithNotify(IIIII)Z"))
+    @Redirect(method = "updatePistonState", at = @At(value = "INVOKE", target = "Lnet/minecraft/World;setBlockMetadataWithNotify(IIIII)Z"))
     private boolean updatePistonStateRedirect(World world, int x, int y, int z, int metadata, int notify, World par1World, int par2, int par3, int par4) {
         return ((WorldExtension) world).setBlockMetadataAndExtraWithNotify(x, y, z, metadata, notify, ((WorldExtension) world).getBlockExtraMetadata(par2, par3, par4));
     }
